@@ -1,16 +1,15 @@
 function computerPlay(){
     
-    if (Math.random() <= 0.33){
+    if (Math.random() <= 0.333){
         console.log("ROCK");
         return "ROCK";
-    } else if (Math.random() > 0.33 && Math.random() <= 0.66){
+    } else if (Math.random() > 0.333 && Math.random() <= 0.666){
         console.log("PAPER");
         return "PAPER";
-    } else if (Math.random() > 0.66 && Math.random() <= 1){
+    } else {
         console.log("SCISSORS");
         return "SCISSORS";
-    }
-
+    } 
 
 }    
      function singleGame(playerSelection, computerSelection){
@@ -39,7 +38,52 @@ function computerPlay(){
             return "You win! Scissors beats paper!";
         }
     }
+function game (){
 
-    const playerSelection = "rock";
-    const computerSelection = computerPlay();
-    console.log(singleGame(playerSelection, computerSelection));    
+    let cScore = 0;
+    let pScore = 0;
+
+    for (let i = 0; i < 5; i++){
+        const pSel = prompt("Paper, rock or scissors?")
+        const cSel = computerPlay();
+        
+        
+        if (singleGame(pSel, cSel) == "You lose! Paper beats rock!"){
+        cScore++;
+        }
+        if (singleGame(pSel, cSel) == "You win! Rock beats scissors!"){
+            pScore++;
+        }
+        if (singleGame(pSel, cSel) == "You win! Paper beats rock!"){
+            pScore++;
+        }
+        if (singleGame(pSel, cSel) == "You lose! Scissors beats paper!"){
+            cScore++;
+        }
+        if (singleGame(pSel, cSel) == "You lose! Rock beats scissors!"){
+            cScore++;
+        }
+        if (singleGame(pSel, cSel) == "You win! Scissors beats paper!"){
+            pScore++;
+        }
+        if (singleGame(pSel, cSel) == "One more time!"){
+            i--;
+        }
+        console.log("computer = " + cScore);
+        console.log("player = " + pScore);
+        
+    }
+    
+    if (cScore < pScore){
+        pScore = 0;
+        cScore = 0;
+        return "You win!";        
+    }
+
+    if (cScore > pScore){
+        pScore = 0;
+        cScore = 0;
+        return "You lose!";        
+    }
+}
+console.log(game());
